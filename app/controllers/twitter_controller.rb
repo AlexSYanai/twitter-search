@@ -7,8 +7,8 @@ class TwitterController < ActionController::Base
   end
 
   def load_tweets
-    user = $client.user('lukekedz')
-    tweet = $client.user_timeline('lukekedz',include_rts: false).take(2)
+    user = $client.user('AlexSYanai')
+    tweet = $client.user_timeline('AlexSYanai',include_rts: false).take(2)
     @user_info = parse_user(user)
     @tweet_info = parse_tweets(tweet)
   end
@@ -18,10 +18,10 @@ class TwitterController < ActionController::Base
     info = {
       username: user.screen_name.to_s,
       full_name: user.name.to_s,
-      tweets: user.statuses_count.to_s,
-      favorites: user.favorites_count.to_s,
-      followers: user.followers_count.to_s,
-      friends: user.friends_count.to_s,
+      tweets: user.statuses_count,
+      favorites: user.favorites_count,
+      followers: user.followers_count,
+      friends: user.friends_count,
       description: user.description.to_s,
       prof_pic: user.profile_image_url_https.to_s,
       location: user.location.to_s,
@@ -31,8 +31,9 @@ class TwitterController < ActionController::Base
   def parse_tweets(tweets)
     tweets_info = tweets.map do |tweet|
       { date: format_date(tweet.created_at.to_s),
-        retweets: tweet.retweet_count.to_s,
-        body: tweet.text.to_s }
+        retweets: tweet.retweet_count,
+        body: tweet.text.to_s,
+        sentiment: analyze_sentiment(tweet.text) }
     end
     tweets_info.to_json
   end
