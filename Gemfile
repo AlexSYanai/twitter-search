@@ -27,7 +27,10 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 
 # Uses DotENV for environment variables
-gem 'dotenv-rails' 
+gem 'dotenv-rails'
+
+# Accesses the Twitter API with the Twitter gem
+gem 'twitter' 
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
