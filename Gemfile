@@ -28,9 +28,12 @@ gem 'spring',        group: :development
 
 # Uses DotENV for environment variables
 gem 'dotenv-rails'
-
 # Accesses the Twitter API with the Twitter gem
-gem 'twitter' 
+gem 'twitter'
+# Use Rspec for testing
+gem 'rspec-rails', group: [:development, :test]
+# For generating test models
+gem 'factory_girl_rails', group: [:development, :test]
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
