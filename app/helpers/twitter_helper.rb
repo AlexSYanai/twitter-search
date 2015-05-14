@@ -1,6 +1,17 @@
 module TwitterHelper
+  def word_lists
+    @positive_words = []
+    @negative_words = []
+  end
+
   def format_date(date_string)
     t = Time.new(date_string)
     t.strftime("%I:%M %p - %d %b %y")
+  end
+
+  def parse_word_files
+    word_lists
+    File.open("#{Rails.root}/app/models/positive_words.txt").each_line { |line| @positive_words << line.chomp }
+    File.open("#{Rails.root}/app/models/negative_words.txt").each_line { |line| @negative_words << line.chomp }
   end
 end

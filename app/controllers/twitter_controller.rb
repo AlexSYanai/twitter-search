@@ -2,12 +2,13 @@ class TwitterController < ActionController::Base
   include TwitterHelper
 
   def index
+    parse_word_files if @positive_words.nil?
     load_tweets
   end
 
   def load_tweets
-    user = $client.user('AlexSYanai')
-    tweet = $client.user_timeline('AlexSYanai',include_rts: false).take(2)
+    user = $client.user('lukekedz')
+    tweet = $client.user_timeline('lukekedz',include_rts: false).take(2)
     @user_info = parse_user(user)
     @tweet_info = parse_tweets(tweet)
   end
