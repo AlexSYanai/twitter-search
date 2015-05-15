@@ -2,15 +2,25 @@ class TwitterController < ActionController::Base
   include TwitterHelper
 
   def index
-    parse_word_files if @positive_words.nil?
-    load_tweets
   end
 
-  def load_tweets
-    user = $client.user('AlexSYanai')
-    tweet = $client.user_timeline('AlexSYanai',include_rts: false).take(2)
+  def create
+    parse_word_files if @positive_words.nil?
+    user_name = params["name"]
+    respond_to do |format|
+      load_tweets(user_name)
+      format.json {
+        render json: {:info => @final_info}
+      }
+    end
+  end
+
+  def load_tweets(user_name)
+    user = $client.user(user_name)
+    tweet = $client.user_timeline(user_name,include_rts: false).take(6)
     @user_info = parse_user(user)
     @tweet_info = parse_tweets(tweet)
+    @final_info = @user_info + @tweet_info
   end
 
   private
@@ -31,9 +41,9 @@ class TwitterController < ActionController::Base
   def parse_tweets(tweets)
     tweets_info = tweets.map do |tweet|
       { date: format_date(tweet.created_at.to_s),
-        retweets: tweet.retweet_count,
-        body: tweet.text.to_s,
-        sentiment: analyze_sentiment(tweet.text) }
+      retweets: tweet.retweet_count,
+      body: tweet.text.to_s,
+      sentiment: analyze_sentiment(tweet.text) }
     end
     tweets_info.to_json
   end
