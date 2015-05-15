@@ -20,6 +20,6 @@ module TwitterHelper
       score += 1 if @positive_words.include?(word)
       score -= 1 if @negative_words.include?(word)
     end
-    score
+    score.to_s
   end
 end
