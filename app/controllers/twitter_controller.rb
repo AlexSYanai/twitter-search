@@ -39,7 +39,7 @@ class TwitterController < ActionController::Base
 
   def parse_tweets(tweets)
     tweets_info = tweets.map do |tweet|
-      { date:      format_date(tweet.created_at.to_s),
+      { date:      format_date(tweet.created_at),
         retweets:  tweet.retweet_count.to_s,
         body:      tweet.text.to_s,
         sentiment: analyze_sentiment(tweet.text) }

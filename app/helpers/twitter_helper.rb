@@ -5,7 +5,7 @@ module TwitterHelper
   end
 
   def format_date(date_string)      # Formats created-at in keeping with Twitter's style
-    Time.new(date_string).strftime("%I:%M %p - %d %b %y")
+    date_string.strftime("%I:%M %p - %d %b %y")
   end
 
   def parse_word_files              # Parses the word-sentiment lists
