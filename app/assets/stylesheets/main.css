@@ -50,6 +50,8 @@ body {
 .jumbotron {
   text-align: center;
   border-bottom: 1px solid #e5e5e5;
+  background-image:url('http://twittermania.nl/wp-content/uploads/2009/07/Hashtag.png');
+  background-size: cover;
 }
 
 /* Supporting marketing content */
@@ -76,5 +78,7 @@ body {
   /* Remove the bottom border on the jumbotron for visual effect */
   .jumbotron {
     border-bottom: 0;
+    background-image:url('http://twittermania.nl/wp-content/uploads/2009/07/Hashtag.png');
+    background-size: cover;
   }
 }

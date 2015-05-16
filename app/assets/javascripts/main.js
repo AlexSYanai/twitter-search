@@ -9,9 +9,32 @@ $(document).ready(function(){
         data: newUser,
         dataType: 'json',
         success: function(data) {
-          console.log(data.info[1])
+          var tweetArray = data.info[0]
+          var currentUser = data.info[1]
+          updateProfile(currentUser,tweetArray)
         }
       });
     }
   });
+
+  function updateProfile(user,tweets) {
+    for (prop in user) {
+      var idk = $("." + prop)
+      if (idk.length == 1) {
+        if (prop === "prof_pic") {
+          $(idk[0].firstChild).attr("src",user[prop]);
+        }else{
+          idk[0].innerHTML = user[prop];
+        }
+      }else{
+        if (prop === "background") {
+          $('.jumbotron').css('background-image','url(' + user[prop] + ')')
+        }else{
+          $.each( idk, function( key, value ) {
+            value.innerHTML = user[prop];
+          });
+        }
+      }
+    }
+  }
 });
