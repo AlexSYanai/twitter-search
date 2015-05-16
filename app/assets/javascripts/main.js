@@ -4,8 +4,8 @@ $(document).ready(function(){
     var newUser = { name : $('#user-search').val() }
     if (key == 13) {
       $.ajax({
-        type: "POST",
-        url: "/twitter",
+        type: 'POST',
+        url: '/twitter',
         data: newUser,
         dataType: 'json',
         success: function(data) {
@@ -16,25 +16,37 @@ $(document).ready(function(){
       });
     }
   });
-
+  
   function updateProfile(user,tweets) {
     for (prop in user) {
-      var idk = $("." + prop)
-      if (idk.length == 1) {
+      var userProperty = $("." + prop)
+      if (userProperty.length == 1) {
         if (prop === "prof_pic") {
-          $(idk[0].firstChild).attr("src",user[prop]);
+          $(userProperty[0].firstChild).attr("src",user[prop]);
         }else{
-          idk[0].innerHTML = user[prop];
+          userProperty[0].innerHTML = user[prop];
         }
       }else{
         if (prop === "background") {
           $('.jumbotron').css('background-image','url(' + user[prop] + ')')
         }else{
-          $.each( idk, function( key, value ) {
+          $.each( userProperty, function(key,value ) {
             value.innerHTML = user[prop];
           });
         }
       }
     }
+
+    $.each(tweets, function(key,value) {
+      var tweetDiv = $(".tweets" + (key + 1))
+      $.each(tweetDiv[0].children, function(prop,val) {
+        tweetVal = val.className
+        if (tweetVal !== "username") {
+          val.innerHTML = value[tweetVal];
+        }
+      });
+    });
+
+
   }
 });
