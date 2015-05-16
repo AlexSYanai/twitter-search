@@ -33,7 +33,7 @@ class TwitterController < ActionController::Base
       description: user.description.to_s,
       location:    user.location.to_s,
       prof_pic:    user.profile_image_url_https.to_s,
-      background:  user.profile_background_image_url_https.to_s,
+      background:  user.profile_banner_url.to_s,
       user_score:  (@tweet_sentiment + user.followers_count).to_s }
   end
 
