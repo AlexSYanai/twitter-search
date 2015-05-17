@@ -153,53 +153,34 @@ $(document).ready(function(){
   };
 
   $(function() {
-    var $content = $( "#sliderList" );
-    var $elements = $( ".tweet" );
+    $twee = $( ".tweet" );
 
     $('#created').click(function() {
-      $creationOrder = $( '#created' ).attr('value');
-      if ($creationOrder == "newer"){
-        var elements = sortByDate($elements, 'ASC');
-        $( '#created' ).attr('value','older');
-      }else{
-        var elements = sortByDate($elements, 'DESC');
-        $( '#created' ).attr('value','newer');
-      }
-      for( var i = 0; i < elements.length; ++i ) {
-        $('#sliderList').append($(elements[i].html))
-      }
-      return false;
+      orderEls('#created','newer','older',sortByDate)
     });
 
     $('#rts').click(function() {
-      $retweetOrder = $( '#rts' ).attr('value');
-      if ($retweetOrder == 'highest'){
-        var elements = sortByRetweets($elements, 'ASC');
-        $('#rts').attr('value','lowest');
-      }else{
-        var elements = sortByRetweets($elements, 'DESC');
-        $('#rts').attr('value','highest');
-      }
-      for( var i = 0; i < elements.length; ++i ) {
-        $('#sliderList').append($(elements[i].html))
-      }
-      return false;
+      orderEls('#rts','highest','lowest',sortByRetweets)
     });
 
     $('#anyPics').click(function() {
-      $picOrder = $( '#anyPics' ).attr('value');
-      if ($picOrder == 'yes'){
-        var elements = sortByPic($elements, 'ASC');
-        $('#anyPics').attr('value','no');
+      orderEls('#anyPics','yes','no',sortByPic)
+    });
+
+    function orderEls(div,highVal,lowVal,sortFunction) {
+      $divsOrder = $(div).attr('value');
+      if ($divsOrder == highVal){
+        var elements = sortFunction($twee, 'ASC');
+        $(div).attr('value',lowVal);
       }else{
-        var elements = sortByPic($elements, 'DESC');
-        $('#anyPics').attr('value','yes');
+        var elements = sortFunction($twee, 'DESC');
+        $(div).attr('value',highVal);
       }
       for( var i = 0; i < elements.length; ++i ) {
         $('#sliderList').append($(elements[i].html))
       }
-      return false;
-    });
+      return false
+    }
   });
 
 });
