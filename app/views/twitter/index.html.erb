@@ -48,10 +48,9 @@
             Filter Tweets <span class="caret"></span>
           </button>
           <ul class="dropdown-menu" role="menu">
-            <li id="older"><a href="#">Older</a></li>
-            <li id="newer"><a href="#">Newer</a></li>
-            <li><a href="#">Retweets</a></li>
-            <li><a href="#">Picture</a></li>
+            <li id="created" value="newer"><a href="#">Date Posted</a></li>
+            <li id="rts" value="highest"><a href="#">Retweets</a></li>
+            <li id="anyPics" value="yes"><a href="#">Picture</a></li>
           </ul>
         </div>
 
@@ -64,7 +63,7 @@
       <div class="input-group">
 
         <span class="input-group-btn">
-          <button class="btn btn-default" type="button">@</button>
+          <button class="btn btn-default" id="search-button" type="button">@</button>
         </span>
 
 
@@ -101,36 +100,42 @@
           <h4 class="username">@Username</h4>
           <span class="date">Date</span><span class="retweets">Retweets</span>
           <p class="body">BodyBodyBodyBodyBodyBodyBodyBodyBody</p>
+          <div class="tweet_pic" value="0"><img src="#"/></div>
           <div class="created_at"></div>
         </li>
         <li class="tweet" id="tweet2">
           <h4 class="username">@Username</h4>
           <span class="date">Date</span><span class="retweets">Retweets</span>
           <p class="body">BodyBodyBodyBodyBodyBodyBodyBodyBody</p>
+          <div class="tweet_pic" value="0"><img src="#"/></div>
           <div class="created_at"></div>
         </li>
         <li class="tweet" id="tweet3">
           <h4 class="username">@Username</h4>
           <span class="date">Date</span><span class="retweets">Retweets</span>
           <p class="body">BodyBodyBodyBodyBodyBodyBodyBodyBody</p>
+          <div class="tweet_pic" value="0"><img src="#"/></div>
           <div class="created_at"></div>
         </li>
         <li class="tweet" id="tweet4">
           <h4 class="username">@Username</h4>
           <span class="date">Date</span><span class="retweets">Retweets</span>
           <p class="body">BodyBodyBodyBodyBodyBodyBodyBodyBody</p>
+          <div class="tweet_pic" value="0"><img src="#"/></div>
           <div class="created_at"></div>
         </li>
         <li class="tweet" id="tweet5">
           <h4 class="username">@Username</h4>
           <span class="date">Date</span><span class="retweets">Retweets</span>
           <p class="body">BodyBodyBodyBodyBodyBodyBodyBodyBody</p>
+          <div class="tweet_pic" value="0"><img src="#"/></div>
           <div class="created_at"></div>
         </li>
         <li class="tweet" id="tweet6">
           <h4 class="username">@Username</h4>
           <span class="date">Date</span><span class="retweets">Retweets</span>
           <p class="body">BodyBodyBodyBodyBodyBodyBodyBodyBody</p>
+          <div class="tweet_pic" value="0"><img src="#"/></div>
           <div class="created_at"></div>
         </li>
       </ul>
@@ -142,8 +147,8 @@
           <%= bootstrap_flash %>
           <%= yield %>
         </div>
-      </div><!--/row-->
-    </div> <!-- /container -->
+      </div>
+    </div>
 
   </body>
   </html>
