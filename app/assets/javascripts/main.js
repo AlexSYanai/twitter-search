@@ -69,8 +69,7 @@ $(document).ready(function(){
   // Need to manually reset links or valid links persist and display
   function clearPictures() {
     $.each($('.tweet_pic'), function(prop,val){
-      imgDiv = val.firstChild
-      console.log($(imgDiv).attr('src','#'))
+      $(val.firstChild).attr('src',"data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=")
     })
   }
 
@@ -152,6 +151,7 @@ $(document).ready(function(){
     return sorted;
   };
 
+  // Set triggers for sorting
   $(function() {
     $twee = $( ".tweet" );
 
