@@ -42,6 +42,7 @@ class TwitterController < ActionController::Base
       { date:       format_date(tweet.created_at),
         created_at: tweet.created_at,
         retweets:   tweet.retweet_count.to_s,
+        tweet_pic:  parse_media(tweet),
         body:       tweet.text.to_s,
         sentiment:  analyze_sentiment(tweet.text) }
     end

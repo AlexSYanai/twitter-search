@@ -4,6 +4,10 @@ module TwitterHelper
     @negative_words = []
   end
 
+  def parse_media(tweet)
+    tweet.media[0].media_url if tweet.media.any?
+  end
+
   def format_date(date_string)      # Formats created-at in keeping with Twitter's style
     date_string.strftime("%I:%M %p - %d %b %y")
   end
