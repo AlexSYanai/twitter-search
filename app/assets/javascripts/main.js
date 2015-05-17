@@ -16,7 +16,7 @@ $(document).ready(function(){
       });
     }
   });
-  
+
   function updateProfile(user,tweets) {
     for (prop in user) {
       var userProperty = $("." + prop)
@@ -46,7 +46,57 @@ $(document).ready(function(){
         }
       });
     });
-
-
   }
+
+
+  $.sortByDate = function( elements, order ) {
+    console.log('hisort');
+    var arr = [];
+    elements.each(function() {
+      var obj = {},
+      $els = $(this),
+      $el = $els[0]
+      $created_div = $($el.children)
+      time = $created_div[4].innerHTML,
+      date = new Date(time),
+      timestamp = date.getTime();
+      obj.html = $created_div[4].parentElement;
+      obj.time = timestamp;      
+      arr.push( obj );
+    });
+
+    var sorted = arr.sort(function( a, b ) {
+      if( order == "ASC" ) {
+        return a.time > b.time;
+      } else {
+        return b.time > a.time;
+      }
+    });
+
+    return sorted;
+  };
+
+  $(function() {
+    var $newer = $( "#newer" ),
+    $older = $( "#older" ),
+    $content = $( "#sliderList" ),
+    $elements = $( ".tweet" );
+
+    $older.click(function() {
+      var elements = $.sortByDate( $elements, "ASC" );
+      for( var i = 0; i < elements.length; ++i ) {
+        $('#sliderList').append($(elements[i].html))
+      }
+      return false;
+    });
+
+    $newer.click(function() {
+      var elements = $.sortByDate( $elements, "DESC" );
+      for( var i = 0; i < elements.length; ++i ) {
+        $('#sliderList').append($(elements[i].html))
+      }
+      return false;
+    });
+  });
+
 });

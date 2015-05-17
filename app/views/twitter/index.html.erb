@@ -41,7 +41,20 @@
   <div class="navbar navbar-default navbar-static-top">
     <div class="container">
       <a class="navbar-brand" href="#">TwitterSearch</a>
+
       <div class="navbar-collapse collapse navbar-responsive-collapse">
+        <div class="btn-group sort-menu">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+            Filter Tweets <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li id="older"><a href="#">Older</a></li>
+            <li id="newer"><a href="#">Newer</a></li>
+            <li><a href="#">Retweets</a></li>
+            <li><a href="#">Picture</a></li>
+          </ul>
+        </div>
+
       </div>
     </div>
   </div>
@@ -49,7 +62,12 @@
   <div class="container">
     <div class="header clearfix">
       <div class="input-group">
-        <span class="input-group-addon" id="basic-addon1">@</span>
+
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button">@</button>
+        </span>
+
+
         <input type="text" class="form-control" id="user-search" placeholder="Username" aria-describedby="basic-addon1">
       </div>
     </div>
@@ -57,17 +75,17 @@
     <div class="jumbotron">
       <div class="row">
         <div class="col-lg-4">
-          <p class="tweets">Tweets</p>
-          <p class="favorites">Favorites</p>
           <p class="full_name">Fullname</p>
-          <p class="username">(@Username)</p>
-        </div>
-        <div class="col-lg-4"><div class="prof_pic"><img src="#"/></div></div>
-        <div class="col-lg-4">
-          <p class="friends">Friends</p>
-          <p class="followers">Followers</p>
-          <p class="user_score">User Score</p>
+          <p>(@<span class="username">Username</span>)</p>
           <p class="location">Location</p>
+          <p>User Score: <span class="user_score">User Score</span></p>
+        </div>
+        <div class="col-lg-4"><div class="prof_pic"><img src="https://abs.twimg.com/sticky/default_profile_images/default_profile_0_200x200.png"/></div></div>
+        <div class="col-lg-4">
+          <p>Tweets: <span class="tweets">Tweets</span></p>
+          <p>Favorites: <span class="favorites">Favorites</span></p>
+          <p>Friends: <span class="friends">Friends</span></p>
+          <p>Followers: <span class="followers">Followers</span></p>
         </div>
       </div>
       <div class="row">
@@ -78,41 +96,44 @@
     </div>
 
     <div class="row marketing">
-      <div class="col-lg-6">
-        <div class="tweets1">
+      <ul id="sliderList">
+        <li class="tweet" id="tweet1">
           <h4 class="username">@Username</h4>
-          <p class="date">Date</p><p class="retweets">Retweets</p>
+          <span class="date">Date</span><span class="retweets">Retweets</span>
           <p class="body">BodyBodyBodyBodyBodyBodyBodyBodyBody</p>
-        </div>
-        <div class="tweets2">
+          <div class="created_at"></div>
+        </li>
+        <li class="tweet" id="tweet2">
           <h4 class="username">@Username</h4>
-          <p class="date">Date</p><p class="retweets">Retweets</p>
+          <span class="date">Date</span><span class="retweets">Retweets</span>
           <p class="body">BodyBodyBodyBodyBodyBodyBodyBodyBody</p>
-        </div>
-        <div class="tweets3">
+          <div class="created_at"></div>
+        </li>
+        <li class="tweet" id="tweet3">
           <h4 class="username">@Username</h4>
-          <p class="date">Date</p><p class="retweets">Retweets</p>
+          <span class="date">Date</span><span class="retweets">Retweets</span>
           <p class="body">BodyBodyBodyBodyBodyBodyBodyBodyBody</p>
-        </div>
-      </div>
-
-      <div class="col-lg-6">
-        <div class="tweets4">
+          <div class="created_at"></div>
+        </li>
+        <li class="tweet" id="tweet4">
           <h4 class="username">@Username</h4>
-          <p class="date">Date</p><p class="retweets">Retweets</p>
+          <span class="date">Date</span><span class="retweets">Retweets</span>
           <p class="body">BodyBodyBodyBodyBodyBodyBodyBodyBody</p>
-        </div>
-        <div class="tweets5">
+          <div class="created_at"></div>
+        </li>
+        <li class="tweet" id="tweet5">
           <h4 class="username">@Username</h4>
-          <p class="date">Date</p><p class="retweets">Retweets</p>
+          <span class="date">Date</span><span class="retweets">Retweets</span>
           <p class="body">BodyBodyBodyBodyBodyBodyBodyBodyBody</p>
-        </div>
-        <div class="tweets6">
+          <div class="created_at"></div>
+        </li>
+        <li class="tweet" id="tweet6">
           <h4 class="username">@Username</h4>
-          <p class="date">Date</p><p class="retweets">Retweets</p>
+          <span class="date">Date</span><span class="retweets">Retweets</span>
           <p class="body">BodyBodyBodyBodyBodyBodyBodyBodyBody</p>
-        </div>
-      </div>
+          <div class="created_at"></div>
+        </li>
+      </ul>
     </div>
 
     <div class="container">
