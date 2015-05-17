@@ -27,6 +27,7 @@ $(document).ready(function(){
   }
 
   function updateProfile(user,tweets) {
+    clearPictures()
     for (prop in user) {
       var userProperty = $("." + prop)
       if (userProperty.length == 1) {
@@ -63,6 +64,14 @@ $(document).ready(function(){
         }
       });
     });
+  }
+
+  // Need to manually reset links or valid links persist and display
+  function clearPictures() {
+    $.each($('.tweet_pic'), function(prop,val){
+      imgDiv = val.firstChild
+      console.log($(imgDiv).attr('src','#'))
+    })
   }
 
   function sortByDate(elements, order) {
