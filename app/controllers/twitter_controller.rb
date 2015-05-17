@@ -39,10 +39,11 @@ class TwitterController < ActionController::Base
 
   def parse_tweets(tweets)
     tweets_info = tweets.map do |tweet|
-      { date:      format_date(tweet.created_at),
-        retweets:  tweet.retweet_count.to_s,
-        body:      tweet.text.to_s,
-        sentiment: analyze_sentiment(tweet.text) }
+      { date:       format_date(tweet.created_at),
+        created_at: tweet.created_at,
+        retweets:   tweet.retweet_count.to_s,
+        body:       tweet.text.to_s,
+        sentiment:  analyze_sentiment(tweet.text) }
     end
     @tweet_sentiment = tweets_info.map { |n| n[:sentiment].to_i }.inject(:+)
     tweets_info
