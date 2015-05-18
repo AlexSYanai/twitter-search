@@ -108,6 +108,10 @@ ul {
   color: white;
 }
 
+.progress-bar.animate {
+  width: 100%;
+}
+
 /* Customize container */
 @media (min-width: 900px) {
   .container {

@@ -1,7 +1,11 @@
 $(document).ready(function() {
+
+  // Sets triggers for ajax request
   $('#user-search').keydown(function(e) {
     var key = e.which;
     if (key == 13) {
+      e.preventDefault()
+      loadingModal()
       var newUser = {
         name: $('#user-search').val()
       }
@@ -9,12 +13,26 @@ $(document).ready(function() {
     }
   });
 
-  $('#search-button').click(function() {
+  $('#search-button').click(function(e) {
+    e.preventDefault()
+    loadingModal()
     var newUser = {
       name: $('#user-search').val()
     }
     retrieveProfile(newUser)
   });
+
+  // Creates loading bar modal while request is sent
+  function loadingModal(){
+    var $modal = $('.js-loading-bar'),
+    $progress = $modal.find('.progress-bar');
+    $modal.modal('show');
+    $progress.addClass('animate');
+    setTimeout(function() {
+      $progress.removeClass('animate');
+      $modal.modal('hide');
+    }, 1000);
+  }
 
   function retrieveProfile(newUser) {
     $.ajax({
@@ -33,18 +51,19 @@ $(document).ready(function() {
     });
   }
 
+  // Adds values to profile and tweets
   function updateProfile(user, tweets) {
     clearPictures()
     for (prop in user) {
-      var userProperty = $("." + prop)
+      var userProperty = $('.' + prop)
       if (userProperty.length == 1) {
-        if (prop === "prof_pic") {
-          $(userProperty[0].firstChild).attr("src", user[prop]);
+        if (prop === 'prof_pic') {
+          $(userProperty[0].firstChild).attr('src', user[prop]);
         } else {
           userProperty[0].innerHTML = user[prop];
         }
       } else {
-        if (prop === "background") {
+        if (prop === 'background') {
           $('.jumbotron').css('background-image', 'url(' + user[prop] + ')')
         } else {
           $.each(userProperty, function(key, value) {
@@ -55,15 +74,15 @@ $(document).ready(function() {
     }
 
     $.each(tweets, function(key, value) {
-      var $tweetDiv = $("#tweet" + (key + 1))
+      var $tweetDiv = $('#tweet' + (key + 1))
       $.each($tweetDiv[0].children, function(prop, val) {
         tweetVal = val.className
-        if (tweetVal !== "username") {
-          if (tweetVal === "tweet_pic") {
+        if (tweetVal !== 'username') {
+          if (tweetVal === 'tweet_pic') {
             if (value[tweetVal] !== null) {
               var $imgDiv = val.children[0]
               $(val).attr('value', '1')
-              $($imgDiv).attr('src', "http://" + value[tweetVal].host + value[tweetVal].path)
+              $($imgDiv).attr('src', 'http://' + value[tweetVal].host + value[tweetVal].path)
             }
           } else {
             val.innerHTML = value[tweetVal];
@@ -73,20 +92,23 @@ $(document).ready(function() {
     });
   }
 
-  // Creates error bar if the user is not found
+  // Generates error if user is not found
   function generateError(user) {
+    $('.form-control')[0].value = ''
     $('.failed-request')[0].innerHTML = user.name + ' is not a valid user'
-    $(".failed-request").fadeIn(200);
-    $(".failed-request").fadeToggle(4000);
+    $('.failed-request').fadeIn(200);
+    $('.failed-request').fadeToggle(4000);
   }
 
   // Need to manually reset links or valid links persist and display
   function clearPictures() {
     $.each($('.tweet_pic'), function(prop, val) {
-      $(val.firstChild).attr('src', "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=")
+      $(val.firstChild).attr('src', 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=')
     })
+    return false
   }
 
+  // Sort functions
   function sortByDate(elements, order) {
     var arr = [];
     elements.each(function() {
@@ -167,7 +189,7 @@ $(document).ready(function() {
 
   // Set triggers for sorting
   $(function() {
-    $twee = $(".tweet");
+    $twee = $('.tweet');
 
     $('#created').click(function() {
       orderEls('#created', 'newer', 'older', sortByDate)
