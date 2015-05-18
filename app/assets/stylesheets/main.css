@@ -119,12 +119,6 @@ ul {
   }
 }
 
-@media (min-width: 768px) {
-  .container {
-    width: 750px;
-  }
-}
-
 @media (min-width: 300px) {
   .sort-menu {
     float: right;

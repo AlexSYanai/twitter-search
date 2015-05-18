@@ -187,7 +187,7 @@ $(document).ready(function() {
     return sorted;
   };
 
-  // Set triggers for sorting
+  // Set listeners for sorting
   $(function() {
     $twee = $('.tweet');
 
