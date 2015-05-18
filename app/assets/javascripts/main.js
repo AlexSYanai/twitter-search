@@ -64,7 +64,7 @@ $(document).ready(function() {
         }
       } else {
         if (prop === 'background') {
-          $('.jumbotron').css('background-image', 'url(' + user[prop] + ')')
+          $('.userProfile').css('background-image', 'url(' + user[prop] + ')')
         } else {
           $.each(userProperty, function(key, value) {
             value.innerHTML = user[prop];
@@ -213,7 +213,7 @@ $(document).ready(function() {
         $(div).attr('value', highVal);
       }
       for (var i = 0; i < elements.length; ++i) {
-        $('#sliderList').append($(elements[i].html))
+        $('#mainTweetList').append($(elements[i].html))
       }
       return false
     }

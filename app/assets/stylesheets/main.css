@@ -56,7 +56,7 @@ ul {
   display: none;
 }
 
-.jumbotron {
+.userProfile {
   text-align: center;
   border-bottom: 1px solid #e5e5e5;
   background-image:url('https://www.smartt.com/sites/default/files/public/twitter_logo_banner_12.jpg');
@@ -65,7 +65,7 @@ ul {
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
-.jumbotron p {
+.userProfile p {
   font-size: 120%;
 }
 
@@ -139,7 +139,7 @@ ul {
   .header {
     margin-bottom: 30px;
   }
-  .jumbotron {
+  .userProfile {
     border-bottom: 0;
     background-image:url('https://www.smartt.com/sites/default/files/public/twitter_logo_banner_12.jpg');
     background-size: cover;
