@@ -1,14 +1,18 @@
-$(document).ready(function(){
+$(document).ready(function() {
   $('#user-search').keydown(function(e) {
     var key = e.which;
-    var newUser = { name : $('#user-search').val() }
     if (key == 13) {
+      var newUser = {
+        name: $('#user-search').val()
+      }
       retrieveProfile(newUser)
     }
   });
 
-  $('#search-button').click(function(){
-    var newUser = { name : $('#user-search').val() }
+  $('#search-button').click(function() {
+    var newUser = {
+      name: $('#user-search').val()
+    }
     retrieveProfile(newUser)
   });
 
@@ -21,44 +25,44 @@ $(document).ready(function(){
       success: function(data) {
         var tweetArray = data.info[0]
         var currentUser = data.info[1]
-        updateProfile(currentUser,tweetArray)
+        updateProfile(currentUser, tweetArray)
       }
     });
   }
 
-  function updateProfile(user,tweets) {
+  function updateProfile(user, tweets) {
     clearPictures()
     for (prop in user) {
       var userProperty = $("." + prop)
       if (userProperty.length == 1) {
         if (prop === "prof_pic") {
-          $(userProperty[0].firstChild).attr("src",user[prop]);
-        }else{
+          $(userProperty[0].firstChild).attr("src", user[prop]);
+        } else {
           userProperty[0].innerHTML = user[prop];
         }
-      }else{
+      } else {
         if (prop === "background") {
-          $('.jumbotron').css('background-image','url(' + user[prop] + ')')
-        }else{
-          $.each( userProperty, function(key,value ) {
+          $('.jumbotron').css('background-image', 'url(' + user[prop] + ')')
+        } else {
+          $.each(userProperty, function(key, value) {
             value.innerHTML = user[prop];
           });
         }
       }
     }
 
-    $.each(tweets, function(key,value) {
+    $.each(tweets, function(key, value) {
       var $tweetDiv = $("#tweet" + (key + 1))
-      $.each($tweetDiv[0].children, function(prop,val) {
+      $.each($tweetDiv[0].children, function(prop, val) {
         tweetVal = val.className
         if (tweetVal !== "username") {
           if (tweetVal === "tweet_pic") {
             if (value[tweetVal] !== null) {
               var $imgDiv = val.children[0]
-              $(val).attr('value','1')
+              $(val).attr('value', '1')
               $($imgDiv).attr('src', "http://" + value[tweetVal].host + value[tweetVal].path)
             }
-          }else{
+          } else {
             val.innerHTML = value[tweetVal];
           }
         }
@@ -68,8 +72,8 @@ $(document).ready(function(){
 
   // Need to manually reset links or valid links persist and display
   function clearPictures() {
-    $.each($('.tweet_pic'), function(prop,val){
-      $(val.firstChild).attr('src',"data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=")
+    $.each($('.tweet_pic'), function(prop, val) {
+      $(val.firstChild).attr('src', "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=")
     })
   }
 
@@ -86,11 +90,11 @@ $(document).ready(function(){
       obj.html = $created_div[5].parentElement;
       obj.time = timestamp;
 
-      arr.push( obj );
+      arr.push(obj);
     });
 
     var sorted = arr.sort(function(a, b) {
-      if( order == 'ASC' ) {
+      if (order == 'ASC') {
         return a.time > b.time;
       } else {
         return b.time > a.time;
@@ -112,11 +116,11 @@ $(document).ready(function(){
       obj.html = $retweetDiv[2].parentElement;
       obj.retweets = rtNum;
 
-      arr.push( obj );
+      arr.push(obj);
     });
 
     var sorted = arr.sort(function(a, b) {
-      if( order == 'ASC' ) {
+      if (order == 'ASC') {
         return a.retweets > b.retweets;
       } else {
         return b.retweets > a.retweets;
@@ -137,11 +141,11 @@ $(document).ready(function(){
       obj.html = $el.parentElement;
       obj.pic = hasPic;
 
-      arr.push( obj );
+      arr.push(obj);
     });
 
     var sorted = arr.sort(function(a, b) {
-      if( order == 'ASC' ) {
+      if (order == 'ASC') {
         return a.pic > b.pic;
       } else {
         return b.pic > a.pic;
@@ -153,30 +157,30 @@ $(document).ready(function(){
 
   // Set triggers for sorting
   $(function() {
-    $twee = $( ".tweet" );
+    $twee = $(".tweet");
 
     $('#created').click(function() {
-      orderEls('#created','newer','older',sortByDate)
+      orderEls('#created', 'newer', 'older', sortByDate)
     });
 
     $('#rts').click(function() {
-      orderEls('#rts','highest','lowest',sortByRetweets)
+      orderEls('#rts', 'highest', 'lowest', sortByRetweets)
     });
 
     $('#anyPics').click(function() {
-      orderEls('#anyPics','yes','no',sortByPic)
+      orderEls('#anyPics', 'yes', 'no', sortByPic)
     });
 
-    function orderEls(div,highVal,lowVal,sortFunction) {
+    function orderEls(div, highVal, lowVal, sortFunction) {
       $divsOrder = $(div).attr('value');
-      if ($divsOrder == highVal){
+      if ($divsOrder == highVal) {
         var elements = sortFunction($twee, 'ASC');
-        $(div).attr('value',lowVal);
-      }else{
+        $(div).attr('value', lowVal);
+      } else {
         var elements = sortFunction($twee, 'DESC');
-        $(div).attr('value',highVal);
+        $(div).attr('value', highVal);
       }
-      for( var i = 0; i < elements.length; ++i ) {
+      for (var i = 0; i < elements.length; ++i) {
         $('#sliderList').append($(elements[i].html))
       }
       return false
