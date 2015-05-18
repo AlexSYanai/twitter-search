@@ -1,6 +1,10 @@
 Augmented Twitter API
 ======================
 
+Update 05/17/15:
+---------------
+[Project is live on Heroku](http://sheltered-caverns-3531.herokuapp.com/) 
+
 This project consists in building an API and a web page to search for Twitter profiles and return augmented data about them.
 
 The only requirement is to separate the front-end from the backend you will build. (ie the back-end can only serve JSON and the front-end is a JS/HTML app that will call the API to get dynamic data)
