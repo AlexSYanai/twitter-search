@@ -41,19 +41,15 @@
   <div class="navbar navbar-default navbar-static-top">
     <div class="container">
       <a class="navbar-brand" href="#">TwitterSearch</a>
-
-      <div class="navbar-collapse collapse navbar-responsive-collapse">
-        <div class="btn-group sort-menu">
-          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-            Filter Tweets <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu" role="menu">
-            <li id="created" value="newer"><a href="#">Date Posted</a></li>
-            <li id="rts" value="highest"><a href="#">Retweets</a></li>
-            <li id="anyPics" value="yes"><a href="#">Picture</a></li>
-          </ul>
-        </div>
-
+      <div class="btn-group sort-menu">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+          Filter Tweets <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+          <li id="created" value="newer"><a href="#">Date Posted</a></li>
+          <li id="rts" value="highest"><a href="#">Retweets</a></li>
+          <li id="anyPics" value="yes"><a href="#">Picture</a></li>
+        </ul>
       </div>
     </div>
   </div>
@@ -61,14 +57,12 @@
   <div class="container">
     <div class="header clearfix">
       <div class="input-group">
-
         <span class="input-group-btn">
           <button class="btn btn-default" id="search-button" type="button">@</button>
         </span>
-
-
         <input type="text" class="form-control" id="user-search" placeholder="Username" aria-describedby="basic-addon1">
       </div>
+      <p class="failed-request"></p>
     </div>
 
     <div class="jumbotron">

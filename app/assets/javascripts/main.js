@@ -26,6 +26,9 @@ $(document).ready(function() {
         var tweetArray = data.info[0]
         var currentUser = data.info[1]
         updateProfile(currentUser, tweetArray)
+      },
+      error: function(){
+        generateError(newUser)
       }
     });
   }
@@ -68,6 +71,13 @@ $(document).ready(function() {
         }
       });
     });
+  }
+
+  // Creates error bar if the user is not found
+  function generateError(user) {
+    $('.failed-request')[0].innerHTML = user.name + ' is not a valid user'
+    $(".failed-request").fadeIn(200);
+    $(".failed-request").fadeToggle(4000);
   }
 
   // Need to manually reset links or valid links persist and display
