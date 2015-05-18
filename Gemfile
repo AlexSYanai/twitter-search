@@ -42,3 +42,4 @@ gem 'rspec-rails', group: [:development, :test]
 gem 'factory_girl_rails', group: [:development, :test]
 # For deploying to Heroku
 gem 'rails_12factor', group: :production
+ruby "2.0.0"
